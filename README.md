@@ -8,11 +8,11 @@ Use this module to create custom CSRF middleware and what not.
 ## API
 
 ```js
-var csrf = require('csrf-tokens')(options)
+var tokens = require('csrf-tokens')(options)
 
-var secret = csrf.secret()
-var token = csrf.create(secret)
-var valid = csrf.verify(secret, token)
+var secret = tokens.secret()
+var token = tokens.create(secret)
+var valid = tokens.verify(secret, token)
 ```
 
 Options:
@@ -21,17 +21,17 @@ Options:
 - `saltLength: 8` - the string length of the salt
 - `tokensize: (secret, salt) => token` - a custom token creation function
 
-### var secret = csrf.secret()
+### var secret = tokens.secret()
 
 Create a new `secret` of length `secretLength`.
 You don't have to use this.
 
-### var token = csrf.token(secret)
+### var token = tokens.token(secret)
 
 Create a CSRF token based on a `secret`.
 This is the token you pass to clients.
 
-### var valid = csrf.verify(secret, token)
+### var valid = tokens.verify(secret, token)
 
 Check whether a CSRF token is valid based on a `secret`.
 If it's not valid, you should probably throw a `403` error.
