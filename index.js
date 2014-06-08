@@ -8,7 +8,7 @@ module.exports = function (options) {
   options = options || {}
 
   // adjustable lengths
-  var secretLength = options.secretLength || 12 // the longer the better
+  var secretLength = options.secretLength || 24 // the longer the better
   var saltLength = options.saltLength || 8 // doesn't need to be long
 
   // convert a secret + a salt to a token
