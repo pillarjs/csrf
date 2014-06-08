@@ -11,10 +11,18 @@ describe('CSRF Tokens', function () {
       secret = csrf.secret()
       assert.equal('string', typeof secret)
     })
+
+    it('should create a secret asynchronously', function (done) {
+      csrf.secret(function (err, secret) {
+        assert.ifError(err)
+        assert.equal('string', typeof secret)
+        done()
+      })
+    })
   })
 
   describe('.create()', function () {
-    it('should create a token', function () {
+    it('should create a token synchronously', function () {
       var token = csrf.create(secret)
       assert.equal('string', typeof token)
       assert(~token.indexOf('-'))
