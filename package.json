@@ -11,7 +11,9 @@
   "license": "MIT",
   "repository": "expressjs/csrf-tokens",
   "dependencies": {
-    "rndm": "1"
+    "rndm": "1",
+    "uid2": "~0.0.2",
+    "scmp": "~0.0.3"
   },
   "devDependencies": {
     "mocha": "1"

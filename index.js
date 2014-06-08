@@ -1,6 +1,8 @@
 
-var rndm = require('rndm')
 var crypto = require('crypto')
+var rndm = require('rndm')
+var scmp = require('scmp')
+var uid = require('uid2')
 
 module.exports = function (options) {
   options = options || {}
@@ -26,8 +28,8 @@ module.exports = function (options) {
   // this __should__ be cryptographically secure,
   // but generally client's can't/shouldn't-be-able-to access this so it really doesn't matter.
   // to do: async version
-  function secret() {
-    return crypto.randomBytes(secretLength).toString('base64')
+  function secret(cb) {
+    return uid(secretLength, cb)
   }
 
   // create a csrf token
@@ -37,7 +39,8 @@ module.exports = function (options) {
 
   // verify whether a token is valid
   function verify(secret, token) {
-    return tokensize(secret, token.split('-')[0]) === token
+    var expected = tokensize(secret, token.split('-')[0])
+    return scmp(token, expected)
   }
 
   return {
