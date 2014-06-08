@@ -40,5 +40,10 @@ describe('CSRF Tokens', function () {
       assert(!csrf.verify(csrf.secret(), token))
       assert(!csrf.verify('asdfasdfasdf', token))
     })
+
+    it('should return `false` with invalid tokens', function () {
+      assert(!csrf.verify(secret, undefined))
+      assert(!csrf.verify(secret, []))
+    })
   })
 })

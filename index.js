@@ -39,6 +39,7 @@ module.exports = function (options) {
 
   // verify whether a token is valid
   function verify(secret, token) {
+    if (!token || typeof token !== 'string') return false
     var expected = tokensize(secret, token.split('-')[0])
     return scmp(token, expected)
   }
