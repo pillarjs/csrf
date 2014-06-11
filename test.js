@@ -27,6 +27,15 @@ describe('CSRF Tokens', function () {
       assert.equal('string', typeof token)
       assert(~token.indexOf('-'))
     })
+
+    it('should not contain /, +, or =', function () {
+      for (var i = 0; i < 1000; i++) {
+        var token = csrf.create(secret)
+        assert(!~token.indexOf('/'))
+        assert(!~token.indexOf('+'))
+        assert(!~token.indexOf('='))
+      }
+    })
   })
 
   describe('.verify()', function () {

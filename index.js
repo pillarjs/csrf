@@ -14,7 +14,7 @@ module.exports = function (options) {
   // convert a secret + a salt to a token
   // this does NOT have to be cryptographically secure, so we don't use HMAC,
   // and we use sha1 because sha256 is unnecessarily long for cookies and stuff
-  var tokensize = options.tokenize || function tokenize(secret, salt) {
+  var tokenize = options.tokenize || function tokenize(secret, salt) {
     return salt + '-'
       + crypto
         .createHash('sha1')
@@ -22,6 +22,7 @@ module.exports = function (options) {
         .update('-')
         .update(secret)
         .digest('base64')
+        .replace(/\/|\+|=/g, base64safe)
   }
 
   // create a secret key
@@ -34,13 +35,13 @@ module.exports = function (options) {
 
   // create a csrf token
   function create(secret) {
-    return tokensize(secret, rndm(saltLength))
+    return tokenize(secret, rndm(saltLength))
   }
 
   // verify whether a token is valid
   function verify(secret, token) {
     if (!token || typeof token !== 'string') return false
-    var expected = tokensize(secret, token.split('-')[0])
+    var expected = tokenize(secret, token.split('-')[0])
     return scmp(token, expected)
   }
 
@@ -49,4 +50,14 @@ module.exports = function (options) {
     create: create,
     verify: verify,
   }
+}
+
+var safemap = {
+  "/": "_",
+  "+": "_",
+  "=": "",
+}
+
+function base64safe(char) {
+  return safemap[char]
 }
