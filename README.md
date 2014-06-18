@@ -10,7 +10,7 @@ Use this module to create custom CSRF middleware and what not.
 ```js
 var tokens = require('csrf-tokens')(options)
 
-var secret = tokens.secret()
+var secret = tokens.secretSync()
 var token = tokens.create(secret)
 var valid = tokens.verify(secret, token)
 ```
@@ -21,10 +21,25 @@ Options:
 - `saltLength: 8` - the string length of the salt
 - `tokensize: (secret, salt) => token` - a custom token creation function
 
-### var secret = tokens.secret()
+### tokens.secret([cb])
 
-Create a new `secret` of length `secretLength`.
+Asynchronously create a new `secret` of length `secretLength`.
+If `cb` is not defined, a promise is returned.
 You don't have to use this.
+
+```js
+tokens.secret().then(function (secret) {
+
+})
+
+tokens.secret(function (err, secret) {
+
+})
+```
+
+### var secret = tokens.secretSync()
+
+Synchronous version of `tokens.secret()`
 
 ### var token = tokens.token(secret)
 

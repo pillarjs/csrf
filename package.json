@@ -1,7 +1,7 @@
 {
   "name": "csrf-tokens",
   "description": "primary logic behind csrf tokens",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "author": {
     "name": "Jonathan Ong",
     "email": "me@jongleberry.com",
