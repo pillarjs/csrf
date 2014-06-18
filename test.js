@@ -8,8 +8,12 @@ describe('CSRF Tokens', function () {
 
   describe('.secret()', function () {
     it('should return a string', function () {
-      secret = csrf.secret()
+      secret = csrf.secretSync()
       assert.equal('string', typeof secret)
+
+      return csrf.secret().then(function (secret) {
+        assert.equal('string', typeof secret)
+      })
     })
 
     it('should create a secret asynchronously', function (done) {
@@ -46,7 +50,7 @@ describe('CSRF Tokens', function () {
 
     it('should return `false` with invalid tokens', function () {
       var token = csrf.create(secret)
-      assert(!csrf.verify(csrf.secret(), token))
+      assert(!csrf.verify(csrf.secretSync(), token))
       assert(!csrf.verify('asdfasdfasdf', token))
     })
 

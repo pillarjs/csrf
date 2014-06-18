@@ -12,8 +12,9 @@
   "repository": "expressjs/csrf-tokens",
   "dependencies": {
     "rndm": "1",
-    "uid2": "~0.0.2",
-    "scmp": "~0.0.3"
+    "scmp": "~0.0.3",
+    "uid-safe": "1",
+    "base64-url": "1"
   },
   "devDependencies": {
     "mocha": "1"
