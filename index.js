@@ -39,6 +39,7 @@ function csrfTokens(options) {
 
     // verify whether a token is valid
     verify: function verify(secret, token) {
+      if (!secret || typeof secret !== 'string') return false
       if (!token || typeof token !== 'string') return false
       var expected = tokenize(secret, token.split('-')[0])
       if (!expected) return false
