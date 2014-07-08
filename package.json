@@ -17,6 +17,7 @@
     "base64-url": "1"
   },
   "devDependencies": {
+    "bluebird": "2",
     "mocha": "1"
   },
   "scripts": {
