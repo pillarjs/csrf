@@ -11,10 +11,10 @@
   "license": "MIT",
   "repository": "expressjs/csrf-tokens",
   "dependencies": {
-    "rndm": "1",
-    "scmp": "~0.0.3",
-    "uid-safe": "1",
-    "base64-url": "1"
+    "rndm": "~1.0.0",
+    "scmp": "0.0.3",
+    "uid-safe": "~1.0.1",
+    "base64-url": "1.0.0"
   },
   "devDependencies": {
     "bluebird": "2",
