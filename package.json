@@ -1,5 +1,5 @@
 {
-  "name": "csrf-tokens",
+  "name": "csrf",
   "description": "primary logic behind csrf tokens",
   "version": "2.0.0",
   "author": {
@@ -9,7 +9,7 @@
     "twitter": "https://twitter.com/jongleberry"
   },
   "license": "MIT",
-  "repository": "expressjs/csrf-tokens",
+  "repository": "pillarjs/csrf",
   "dependencies": {
     "rndm": "~1.0.0",
     "scmp": "0.0.3",
@@ -17,10 +17,18 @@
     "base64-url": "1.0.0"
   },
   "devDependencies": {
+    "istanbul": "0",
     "bluebird": "2",
     "mocha": "1"
   },
   "scripts": {
-    "test": "mocha --reporter spec"
-  }
+    "test": "mocha --reporter spec",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot"
+  },
+  "keywords": [
+    "csrf",
+    "tokens"
+  ],
+  "files": ["index.js"]
 }

@@ -1,7 +1,11 @@
-# csrf-tokens
+# CSRF
 
-[![NPM Version](https://badge.fury.io/js/csrf-tokens.svg)](https://badge.fury.io/js/csrf-tokens)
-[![Build Status](https://travis-ci.org/expressjs/csrf-tokens.svg?branch=master)](https://travis-ci.org/expressjs/csrf-tokens)
+[![NPM version][npm-image]][npm-url]
+[![Build status][travis-image]][travis-url]
+[![Test coverage][coveralls-image]][coveralls-url]
+[![Dependency Status][david-image]][david-url]
+[![License][license-image]][license-url]
+[![Downloads][downloads-image]][downloads-url]
 
 Logic behind CSRF token creation and verification.
 Read [Understanding-CSRF](http://www.jongleberry.com/understanding-csrf.html) for more information on CSRF.
@@ -60,3 +64,18 @@ Check whether a CSRF token is valid based on a `secret`.
 If it's not valid, you should probably throw a `403` error.
 
 ## [License (MIT)](LICENSE)
+
+[npm-image]: https://img.shields.io/npm/v/csrf.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/csrf
+[github-tag]: http://img.shields.io/github/tag/pillarjs/csrf.svg?style=flat-square
+[github-url]: https://github.com/pillarjs/csrf/tags
+[travis-image]: https://img.shields.io/travis/pillarjs/csrf.svg?style=flat-square
+[travis-url]: https://travis-ci.org/pillarjs/csrf
+[coveralls-image]: https://img.shields.io/coveralls/pillarjs/csrf.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/pillarjs/csrf?branch=master
+[david-image]: http://img.shields.io/david/pillarjs/csrf.svg?style=flat-square
+[david-url]: https://david-dm.org/pillarjs/csrf
+[license-image]: http://img.shields.io/npm/l/csrf.svg?style=flat-square
+[license-url]: LICENSE
+[downloads-image]: http://img.shields.io/npm/dm/csrf.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/csrf

@@ -1,7 +1,7 @@
 
 var assert = require('assert')
 
-var csrf = require('./')()
+var csrf = require('..')()
 
 describe('CSRF Tokens', function () {
   var secret
