@@ -14,17 +14,17 @@ Use this module to create custom CSRF middleware and what not.
 ### Install
 
 ```bash
-$ npm install csrf-tokens
+$ npm install csrf
 ```
 
 ## API
 
 ```js
-var tokens = require('csrf-tokens')(options)
+var csrf = require('csrf')(options)
 
-var secret = tokens.secretSync()
-var token  = tokens.create(secret)
-var valid  = tokens.verify(secret, token)
+var secret = csrf.secretSync()
+var token  = csrf.create(secret)
+var valid  = csrf.verify(secret, token)
 ```
 
 ### Options
@@ -33,32 +33,32 @@ var valid  = tokens.verify(secret, token)
 - `saltLength: 8` - the string length of the salt
 - `tokensize: (secret, salt) => token` - a custom token creation function
 
-#### tokens.secret([cb])
+#### csrf.secret([cb])
 
 Asynchronously create a new `secret` of length `secretLength`.
 If `cb` is not defined, a promise is returned.
 You don't have to use this.
 
 ```js
-tokens.secret().then(function (secret) {
+csrf.secret().then(function (secret) {
 
 })
 
-tokens.secret(function (err, secret) {
+csrf.secret(function (err, secret) {
 
 })
 ```
 
-#### var secret = tokens.secretSync()
+#### var secret = csrf.secretSync()
 
-Synchronous version of `tokens.secret()`
+Synchronous version of `csrf.secret()`
 
-#### var token = tokens.token(secret)
+#### var token = csrf.token(secret)
 
 Create a CSRF token based on a `secret`.
 This is the token you pass to clients.
 
-#### var valid = tokens.verify(secret, token)
+#### var valid = csrf.verify(secret, token)
 
 Check whether a CSRF token is valid based on a `secret`.
 If it's not valid, you should probably throw a `403` error.
