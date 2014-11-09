@@ -21,6 +21,9 @@
     "bluebird": "2",
     "mocha": "1"
   },
+  "engines": {
+    "node": ">= 0.8"
+  },
   "scripts": {
     "test": "mocha --reporter spec",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
