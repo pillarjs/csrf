@@ -21,6 +21,12 @@
     "bluebird": "2",
     "mocha": "1"
   },
+  "files": [
+    "LICENSE",
+    "HISTORY.md",
+    "README.md",
+    "index.js"
+  ],
   "engines": {
     "node": ">= 0.8"
   },
@@ -32,6 +38,5 @@
   "keywords": [
     "csrf",
     "tokens"
-  ],
-  "files": ["index.js"]
+  ]
 }
