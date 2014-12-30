@@ -1,6 +1,7 @@
 unreleased
 ==========
 
+  * deps: base64-url@1.1.0
   * deps: rndm@~1.1.0
 
 2.0.2 / 2014-11-09
