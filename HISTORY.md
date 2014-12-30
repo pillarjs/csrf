@@ -1,5 +1,5 @@
-unreleased
-==========
+2.0.3 / 2014-12-30
+==================
 
   * Slight speed improvement for `verify`
   * deps: base64-url@1.1.0
