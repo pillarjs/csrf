@@ -39,9 +39,23 @@ function csrfTokens(options) {
 
     // verify whether a token is valid
     verify: function verify(secret, token) {
-      if (!secret || typeof secret !== 'string') return false
-      if (!token || typeof token !== 'string') return false
-      var expected = tokenize(secret, token.split('-')[0])
+      if (!secret || typeof secret !== 'string') {
+        return false
+      }
+
+      if (!token || typeof token !== 'string') {
+        return false
+      }
+
+      var index = token.indexOf('-')
+
+      if (index === -1) {
+        return false
+      }
+
+      var salt = token.substr(0, index)
+      var expected = tokenize(secret, salt)
+
       return scmp(token, expected)
     },
   }

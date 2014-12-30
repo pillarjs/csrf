@@ -1,6 +1,7 @@
 unreleased
 ==========
 
+  * Slight speed improvement for `verify`
   * deps: base64-url@1.1.0
   * deps: rndm@~1.1.0
 
