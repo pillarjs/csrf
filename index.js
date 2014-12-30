@@ -42,7 +42,6 @@ function csrfTokens(options) {
       if (!secret || typeof secret !== 'string') return false
       if (!token || typeof token !== 'string') return false
       var expected = tokenize(secret, token.split('-')[0])
-      if (!expected) return false
       return scmp(token, expected)
     },
   }
