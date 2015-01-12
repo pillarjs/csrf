@@ -52,7 +52,7 @@ csrf.secret(function (err, secret) {
 
 Synchronous version of `csrf.secret()`
 
-#### var token = csrf.token(secret)
+#### var token = csrf.create(secret)
 
 Create a CSRF token based on a `secret`.
 This is the token you pass to clients.
