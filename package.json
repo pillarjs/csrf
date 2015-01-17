@@ -15,7 +15,7 @@
     "uid-safe": "~1.0.2"
   },
   "devDependencies": {
-    "bluebird": "~2.6.2",
+    "bluebird": "~2.7.1",
     "istanbul": "0.3.5",
     "mocha": "~2.1.0"
   },
