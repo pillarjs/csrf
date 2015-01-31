@@ -7,7 +7,7 @@
 [![Test Coverage][coveralls-image]][coveralls-url]
 
 Logic behind CSRF token creation and verification.
-Read [Understanding-CSRF](http://www.jongleberry.com/understanding-csrf.html) for more information on CSRF.
+Read [Understanding-CSRF](https://github.com/pillarjs/understanding-csrf) for more information on CSRF.
 Use this module to create custom CSRF middleware and what not.
 
 ### Install
