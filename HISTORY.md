@@ -2,6 +2,9 @@ unreleased
 ==========
 
   * deps: base64-url@1.2.1
+  * deps: uid-safe@~1.1.0
+    - Use `crypto.randomBytes`, if available
+    - deps: base64-url@1.2.1
 
 2.0.5 / 2015-01-31
 ==================
