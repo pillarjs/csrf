@@ -28,9 +28,9 @@ var valid  = csrf.verify(secret, token)
 
 ### Options
 
-- `secretLength: 24` - the byte length of the secret key
+- `secretLength: 18` - the byte length of the secret key
 - `saltLength: 8` - the string length of the salt
-- `tokensize: (secret, salt) => token` - a custom token creation function
+- `tokenize: (secret, salt) => token` - a custom token creation function
 
 #### csrf.secret([cb])
 
