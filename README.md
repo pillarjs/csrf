@@ -66,13 +66,13 @@ If it's not valid, you should probably throw a `403` error.
 
 [MIT](LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/csrf.svg?style=flat
+[npm-image]: https://img.shields.io/npm/v/csrf.svg
 [npm-url]: https://npmjs.org/package/csrf
-[node-image]: https://img.shields.io/node/v/csrf.svg?style=flat
+[node-image]: https://img.shields.io/node/v/csrf.svg
 [node-url]: http://nodejs.org/download/
-[travis-image]: https://img.shields.io/travis/pillarjs/csrf.svg?style=flat
+[travis-image]: https://img.shields.io/travis/pillarjs/csrf/master.svg
 [travis-url]: https://travis-ci.org/pillarjs/csrf
-[coveralls-image]: https://img.shields.io/coveralls/pillarjs/csrf.svg?style=flat
+[coveralls-image]: https://img.shields.io/coveralls/pillarjs/csrf/master.svg
 [coveralls-url]: https://coveralls.io/r/pillarjs/csrf?branch=master
-[downloads-image]: https://img.shields.io/npm/dm/csrf.svg?style=flat
+[downloads-image]: https://img.shields.io/npm/dm/csrf.svg
 [downloads-url]: https://npmjs.org/package/csrf
