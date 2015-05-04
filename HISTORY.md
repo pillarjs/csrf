@@ -1,5 +1,5 @@
-unreleased
-==========
+2.0.7 / 2015-05-03
+==================
 
   * Fix compatibility with `crypto.DEFAULT_ENCODING` global changes
 
