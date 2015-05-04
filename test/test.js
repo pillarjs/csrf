@@ -1,5 +1,6 @@
 
 var assert = require('assert')
+var crypto = require('crypto')
 
 var csrf = require('..')()
 
@@ -39,6 +40,25 @@ describe('CSRF Tokens', function () {
         assert(!~token.indexOf('+'))
         assert(!~token.indexOf('='))
       }
+    })
+
+    describe('when crypto.DEFAULT_ENCODING altered', function () {
+      var defaultEncoding
+
+      before(function () {
+        defaultEncoding = crypto.DEFAULT_ENCODING
+        crypto.DEFAULT_ENCODING = 'hex'
+      })
+
+      after(function () {
+        crypto.DEFAULT_ENCODING = defaultEncoding
+      })
+
+      it('should creaate a token', function () {
+        var token = csrf.create(secret)
+        assert.equal('string', typeof token)
+        assert(~token.indexOf('-'))
+      })
     })
   })
 

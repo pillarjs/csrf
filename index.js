@@ -1,11 +1,20 @@
 
+/**
+ * Module dependencies.
+ */
+
 var rndm = require('rndm')
 var scmp = require('scmp')
 var uid = require('uid-safe')
 var crypto = require('crypto')
 var escape = require('base64-url').escape
 
+/**
+ * Module exports.
+ */
+
 module.exports = csrfTokens
+module.exports.tokenize = tokenize
 
 function csrfTokens(options) {
   options = options || {}
@@ -61,12 +70,10 @@ function csrfTokens(options) {
   }
 }
 
-csrfTokens.tokenize = function tokenize(secret, salt) {
+function tokenize(secret, salt) {
   var hash = escape(crypto
     .createHash('sha1')
-    .update(salt)
-    .update('-')
-    .update(secret)
+    .update(salt + '-' + secret, 'ascii')
     .digest('base64'))
   return salt + '-' + hash
 }

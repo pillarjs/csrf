@@ -1,3 +1,8 @@
+unreleased
+==========
+
+  * Fix compatibility with `crypto.DEFAULT_ENCODING` global changes
+
 2.0.6 / 2015-02-13
 ==================
 
