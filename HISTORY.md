@@ -1,3 +1,9 @@
+3.x
+===
+
+  * Return a prototype-based object rather than functions
+    - This means the resulting functions need to be called as methods
+
 2.0.7 / 2015-05-03
 ==================
 

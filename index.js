@@ -1,6 +1,13 @@
+/*!
+ * csrf
+ * Copyright(c) 2014 Jonathan Ong
+ * Copyright(c) 2015 Douglas Christopher Wilson
+ * MIT Licensed
+ */
 
 /**
  * Module dependencies.
+ * @private
  */
 
 var rndm = require('rndm')
@@ -11,64 +18,130 @@ var escape = require('base64-url').escape
 
 /**
  * Module exports.
+ * @public
  */
 
 module.exports = csrfTokens
 module.exports.tokenize = tokenize
 
-function csrfTokens(options) {
-  options = options || {}
+/**
+ * Token generation/verification class.
+ *
+ * @param {object} [options]
+ * @param {number} [options.saltLength=8] The string length of the salt
+ * @param {number} [options.secretLength=18] The byte length of the secret key
+ * @public
+ */
 
-  // adjustable lengths
-  var secretLength = options.secretLength || 18 // the longer the better
-  var saltLength = options.saltLength || 8 // doesn't need to be long
+function Tokens(options) {
+  var opts = options || {}
 
-  // convert a secret + a salt to a token
-  // this does NOT have to be cryptographically secure, so we don't use HMAC,
-  // and we use sha1 because sha256 is unnecessarily long for cookies and stuff
-  var tokenize = options.tokenize || csrfTokens.tokenize
+  var saltLength = opts.saltLength !== undefined
+    ? opts.saltLength
+    : 8
 
-  return {
-    // create a secret key
-    // this __should__ be cryptographically secure,
-    // but generally client's can't/shouldn't-be-able-to access this so it really doesn't matter.
-    secret: function secret(cb) {
-      return uid(secretLength, cb)
-    },
-
-    // a sync version of secret()
-    secretSync: function secretSync() {
-      return uid.sync(secretLength)
-    },
-
-    // create a csrf token
-    create: function create(secret) {
-      return tokenize(secret, rndm(saltLength))
-    },
-
-    // verify whether a token is valid
-    verify: function verify(secret, token) {
-      if (!secret || typeof secret !== 'string') {
-        return false
-      }
-
-      if (!token || typeof token !== 'string') {
-        return false
-      }
-
-      var index = token.indexOf('-')
-
-      if (index === -1) {
-        return false
-      }
-
-      var salt = token.substr(0, index)
-      var expected = tokenize(secret, salt)
-
-      return scmp(token, expected)
-    },
+  if (typeof saltLength !== 'number' || !isFinite(saltLength) || saltLength < 1) {
+    throw new TypeError('option saltLength must be finite number > 1')
   }
+
+  var secretLength = opts.secretLength !== undefined
+    ? opts.secretLength
+    : 18
+
+  if (typeof secretLength !== 'number' || !isFinite(secretLength) || secretLength < 1) {
+    throw new TypeError('option secretLength must be finite number > 1')
+  }
+
+  this.saltLength = saltLength
+  this.secretLength = secretLength
 }
+
+/**
+ * Create a new CSRF token.
+ *
+ * @param {string} secret The secret for the token.
+ * @public
+ */
+
+Tokens.prototype.create = function create(secret) {
+  return this._tokenize(secret, rndm(this.saltLength))
+}
+
+/**
+ * Create a new secret key.
+ *
+ * @param {function} [callback]
+ * @public
+ */
+
+Tokens.prototype.secret = function secret(callback) {
+  return uid(this.secretLength, callback)
+}
+
+/**
+ * Create a new secret key synchronously.
+ * @public
+ */
+
+Tokens.prototype.secretSync = function secretSync() {
+  return uid.sync(this.secretLength)
+}
+
+/**
+ * Tokenize a secret and salt.
+ * @private
+ */
+
+Tokens.prototype._tokenize = tokenize
+
+/**
+ * Verify if a given token is valid for a given secret.
+ *
+ * @param {string} secret
+ * @param {string} token
+ * @public
+ */
+
+Tokens.prototype.verify = function verify(secret, token) {
+  if (!secret || typeof secret !== 'string') {
+    return false
+  }
+
+  if (!token || typeof token !== 'string') {
+    return false
+  }
+
+  var index = token.indexOf('-')
+
+  if (index === -1) {
+    return false
+  }
+
+  var salt = token.substr(0, index)
+  var expected = this._tokenize(secret, salt)
+
+  return scmp(token, expected)
+}
+
+/**
+ * Factory to create token generation/verification class.
+ */
+
+function csrfTokens(options) {
+  var tokens = new Tokens(options)
+
+  if (options && options.tokenize) {
+    // override the tokenize method
+    tokens._tokenize = options.tokenize
+  }
+
+  return tokens
+}
+
+/**
+ * Tokenize a secret and salt.
+ * @private
+ */
 
 function tokenize(secret, salt) {
   var hash = escape(crypto

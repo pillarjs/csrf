@@ -1,24 +1,23 @@
-
 var assert = require('assert')
 var crypto = require('crypto')
-
-var csrf = require('..')()
+var csrf = require('..')
 
 describe('CSRF Tokens', function () {
   var secret
+  var tokens = csrf()
 
   describe('.secret()', function () {
     it('should return a string', function () {
-      secret = csrf.secretSync()
+      secret = tokens.secretSync()
       assert.equal('string', typeof secret)
 
-      return csrf.secret().then(function (secret) {
+      return tokens.secret().then(function (secret) {
         assert.equal('string', typeof secret)
       })
     })
 
     it('should create a secret asynchronously', function (done) {
-      csrf.secret(function (err, secret) {
+      tokens.secret(function (err, secret) {
         assert.ifError(err)
         assert.equal('string', typeof secret)
         done()
@@ -28,14 +27,14 @@ describe('CSRF Tokens', function () {
 
   describe('.create()', function () {
     it('should create a token synchronously', function () {
-      var token = csrf.create(secret)
+      var token = tokens.create(secret)
       assert.equal('string', typeof token)
       assert(~token.indexOf('-'))
     })
 
     it('should not contain /, +, or =', function () {
       for (var i = 0; i < 1000; i++) {
-        var token = csrf.create(secret)
+        var token = tokens.create(secret)
         assert(!~token.indexOf('/'))
         assert(!~token.indexOf('+'))
         assert(!~token.indexOf('='))
@@ -55,7 +54,7 @@ describe('CSRF Tokens', function () {
       })
 
       it('should creaate a token', function () {
-        var token = csrf.create(secret)
+        var token = tokens.create(secret)
         assert.equal('string', typeof token)
         assert(~token.indexOf('-'))
       })
@@ -64,25 +63,59 @@ describe('CSRF Tokens', function () {
 
   describe('.verify()', function () {
     it('should return `true` with valid tokens', function () {
-      var token = csrf.create(secret)
-      assert(csrf.verify(secret, token))
+      var token = tokens.create(secret)
+      assert(tokens.verify(secret, token))
     })
 
     it('should return `false` with invalid tokens', function () {
-      var token = csrf.create(secret)
-      assert(!csrf.verify(csrf.secretSync(), token))
-      assert(!csrf.verify('asdfasdfasdf', token))
+      var token = tokens.create(secret)
+      assert(!tokens.verify(tokens.secretSync(), token))
+      assert(!tokens.verify('asdfasdfasdf', token))
     })
 
     it('should return `false` with invalid secret', function () {
-      assert(!csrf.verify())
-      assert(!csrf.verify([]))
+      assert(!tokens.verify())
+      assert(!tokens.verify([]))
     })
 
     it('should return `false` with invalid tokens', function () {
-      assert(!csrf.verify(secret, undefined))
-      assert(!csrf.verify(secret, []))
-      assert(!csrf.verify(secret, 'hi'))
+      assert(!tokens.verify(secret, undefined))
+      assert(!tokens.verify(secret, []))
+      assert(!tokens.verify(secret, 'hi'))
+    })
+  })
+
+  describe('with "saltLength" option', function () {
+    it('should reject non-numbers', function () {
+      assert.throws(csrf.bind(null, {saltLength: 'bogus'}),
+        /option saltLength/)
+    })
+
+    it('should reject NaN', function () {
+      assert.throws(csrf.bind(null, {saltLength: NaN}),
+        /option saltLength/)
+    })
+
+    it('should reject Infinity', function () {
+      assert.throws(csrf.bind(null, {saltLength: Infinity}),
+        /option saltLength/)
+    })
+  })
+
+  describe('with "secretLength" option', function () {
+    it('should reject non-numbers', function () {
+      assert.throws(csrf.bind(null, {secretLength: 'bogus'}),
+        /option secretLength/)
+    })
+
+    it('should reject NaN', function () {
+      assert.throws(csrf.bind(null, {secretLength: NaN}),
+        /option secretLength/)
+    })
+
+    it('should reject Infinity', function () {
+      assert.throws(csrf.bind(null, {secretLength: Infinity}),
+        /option secretLength/)
     })
   })
 })
