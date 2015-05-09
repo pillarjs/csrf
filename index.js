@@ -21,7 +21,7 @@ var escape = require('base64-url').escape
  * @public
  */
 
-module.exports = csrfTokens
+module.exports = Tokens
 
 /**
  * Token generation/verification class.
@@ -33,6 +33,10 @@ module.exports = csrfTokens
  */
 
 function Tokens(options) {
+  if (!(this instanceof Tokens)) {
+    return new Tokens(options)
+  }
+
   var opts = options || {}
 
   var saltLength = opts.saltLength !== undefined
@@ -126,12 +130,4 @@ Tokens.prototype.verify = function verify(secret, token) {
   var expected = this._tokenize(secret, salt)
 
   return scmp(token, expected)
-}
-
-/**
- * Factory to create token generation/verification class.
- */
-
-function csrfTokens(options) {
-  return new Tokens(options)
 }
