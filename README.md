@@ -19,47 +19,87 @@ $ npm install csrf
 ## API
 
 ```js
-var tokens = require('csrf')(options)
-
-var secret = tokens.secretSync()
-var token  = tokens.create(secret)
-var valid  = tokens.verify(secret, token)
+var Tokens = require('csrf')
 ```
 
-### Options
+### new Tokens([options])
 
-- `secretLength: 18` - the byte length of the secret key
-- `saltLength: 8` - the string length of the salt
+Create a new token generation/verification instance. The `options` argument is
+optional and will just use all defaults if missing.
 
-#### tokens.secret([cb])
+#### Options
 
-Asynchronously create a new `secret` of length `secretLength`.
-If `cb` is not defined, a promise is returned.
-You don't have to use this.
+Morgan accepts these properties in the options object.
+
+##### saltLength
+
+The length of the internal salt to use, in characters. Internally, the salt
+is a base 62 string. Defaults to `8` characters.
+
+##### secretLength
+
+The length of the secret to generate, in bytes. Note that the secret is
+passed around base-64 encoded and that this length refers to the underlying
+bytes, not the length of the base-64 string. Defaults to `18` bytes.
+
+#### tokens.create(secret)
+
+Create a new CSRF token attached to the given `secret`. The `secret` is a
+string, typically generated from the `tokens.secret()` or `tokens.secretSync()`
+methods. This token is what you should add into HTML `<form>` blocks and
+expect the user's browser to provide back.
+
+```js
+var secret = tokens.secretSync()
+var token = tokens.create(secret)
+```
+
+#### tokens.secret(callback)
+
+Asynchronously create a new `secret`, which is a string. The secret is to
+be kept on the server, typically stored in a server-side session for the
+user. The secret should be at least per user.
+
+```js
+tokens.secret(function (err, secret) {
+  if (err) throw err
+  // do something with the secret
+})
+```
+
+#### tokens.secret()
+
+Asynchronously create a new `secret` and return a `Promise`. Please see
+`tokens.secret(callback)` documentation for full details.
+
+**Note**: To use promises in Node.js _prior to 0.12_, the `bluebird`
+module needs to be installed.
 
 ```js
 tokens.secret().then(function (secret) {
-
-})
-
-tokens.secret(function (err, secret) {
-
+  // do something with the secret
 })
 ```
 
-#### var secret = tokens.secretSync()
+#### tokens.secretSync()
 
-Synchronous version of `tokens.secret()`
+A synchronous version of `tokens.secret(callback)`. Please see
+`tokens.secret(callback)` documentation for full details.
 
-#### var token = tokens.create(secret)
+```js
+var secret = tokens.secretSync()
+```
 
-Create a CSRF token based on a `secret`.
-This is the token you pass to clients.
+#### tokens.verify(secret, token)
 
-#### var valid = tokens.verify(secret, token)
+Check whether a CSRF token is valid for the given `secret`, returning
+a Boolean.
 
-Check whether a CSRF token is valid based on a `secret`.
-If it's not valid, you should probably throw a `403` error.
+```js
+if (!tokens.verify(secret, token)) {
+  throw new Error('invalid token!')
+}
+```
 
 ## License
 
