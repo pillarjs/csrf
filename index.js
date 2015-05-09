@@ -128,14 +128,7 @@ Tokens.prototype.verify = function verify(secret, token) {
  */
 
 function csrfTokens(options) {
-  var tokens = new Tokens(options)
-
-  if (options && options.tokenize) {
-    // override the tokenize method
-    tokens._tokenize = options.tokenize
-  }
-
-  return tokens
+  return new Tokens(options)
 }
 
 /**

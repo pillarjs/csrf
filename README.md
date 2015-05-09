@@ -30,7 +30,6 @@ var valid  = tokens.verify(secret, token)
 
 - `secretLength: 18` - the byte length of the secret key
 - `saltLength: 8` - the string length of the salt
-- `tokenize: (secret, salt) => token` - a custom token creation function
 
 #### tokens.secret([cb])
 
