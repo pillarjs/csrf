@@ -117,5 +117,12 @@ describe('CSRF Tokens', function () {
       assert.throws(csrf.bind(null, {secretLength: Infinity}),
         /option secretLength/)
     })
+
+    it('should generate secret with specified byte length', function () {
+      // 3 bytes = 4 base-64 characters
+      // 4 bytes = 6 base-64 characters
+      assert.equal(csrf({secretLength: 3}).secretSync().length, 4)
+      assert.equal(csrf({secretLength: 4}).secretSync().length, 6)
+    })
   })
 })
