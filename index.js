@@ -22,7 +22,6 @@ var escape = require('base64-url').escape
  */
 
 module.exports = csrfTokens
-module.exports.tokenize = tokenize
 
 /**
  * Token generation/verification class.
@@ -92,7 +91,13 @@ Tokens.prototype.secretSync = function secretSync() {
  * @private
  */
 
-Tokens.prototype._tokenize = tokenize
+Tokens.prototype._tokenize = function tokenize(secret, salt) {
+  var hash = crypto
+    .createHash('sha1')
+    .update(salt + '-' + secret, 'ascii')
+    .digest('base64')
+  return escape(salt + '-' + hash)
+}
 
 /**
  * Verify if a given token is valid for a given secret.
@@ -129,17 +134,4 @@ Tokens.prototype.verify = function verify(secret, token) {
 
 function csrfTokens(options) {
   return new Tokens(options)
-}
-
-/**
- * Tokenize a secret and salt.
- * @private
- */
-
-function tokenize(secret, salt) {
-  var hash = escape(crypto
-    .createHash('sha1')
-    .update(salt + '-' + secret, 'ascii')
-    .digest('base64'))
-  return salt + '-' + hash
 }

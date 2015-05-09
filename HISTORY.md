@@ -1,6 +1,7 @@
 3.x
 ===
 
+  * Remove `tokenize` export
   * Remove `tokenize` option
   * Return a prototype-based object rather than functions
     - This means the resulting functions need to be called as methods
