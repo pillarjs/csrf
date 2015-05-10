@@ -1,5 +1,5 @@
-3.x
-===
+3.0.0 / 2015-05-09
+==================
 
   * Remove `tokenize` export
   * Remove `tokenize` option
