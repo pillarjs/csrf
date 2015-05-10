@@ -5,6 +5,8 @@
   * Remove `tokenize` option
   * Return a prototype-based object rather than functions
     - This means the resulting functions need to be called as methods
+  * deps: uid-safe@~2.0.0
+    - Use global `Promise` when returning a promise
 
 2.0.7 / 2015-05-03
 ==================

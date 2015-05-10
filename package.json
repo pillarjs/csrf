@@ -12,7 +12,7 @@
     "base64-url": "1.2.1",
     "rndm": "~1.1.0",
     "scmp": "1.0.0",
-    "uid-safe": "~1.1.0"
+    "uid-safe": "~2.0.0"
   },
   "devDependencies": {
     "bluebird": "2.9.25",
@@ -29,9 +29,9 @@
     "node": ">= 0.8"
   },
   "scripts": {
-    "test": "mocha --reporter spec",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
-    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot"
+    "test": "mocha --trace-deprecation --reporter spec --bail --check-leaks test/",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --trace-deprecation --reporter dot --check-leaks test/",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --trace-deprecation --reporter spec --check-leaks test/"
   },
   "keywords": [
     "csrf",

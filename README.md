@@ -72,8 +72,8 @@ tokens.secret(function (err, secret) {
 Asynchronously create a new `secret` and return a `Promise`. Please see
 `tokens.secret(callback)` documentation for full details.
 
-**Note**: To use promises in Node.js _prior to 0.12_, the `bluebird`
-module needs to be installed.
+**Note**: To use promises in Node.js _prior to 0.12_, promises must be
+"polyfilled" using `global.Promise = require('bluebird')`.
 
 ```js
 tokens.secret().then(function (secret) {
