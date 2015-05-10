@@ -57,6 +57,24 @@ describe('Tokens', function () {
       this.secret = this.tokens.secretSync()
     })
 
+    it('should require secret', function () {
+      assert.throws(function () {
+        this.tokens.create()
+      }.bind(this), /argument secret.*required/)
+    })
+
+    it('should reject non-string secret', function () {
+      assert.throws(function () {
+        this.tokens.create(42)
+      }.bind(this), /argument secret.*required/)
+    })
+
+    it('should reject empty string secret', function () {
+      assert.throws(function () {
+        this.tokens.create('')
+      }.bind(this), /argument secret.*required/)
+    })
+
     it('should create a token', function () {
       var token = this.tokens.create(this.secret)
       assert.ok(typeof token === 'string')

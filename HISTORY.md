@@ -5,6 +5,7 @@
   * Remove `tokenize` option
   * Return a prototype-based object rather than functions
     - This means the resulting functions need to be called as methods
+  * Throw when missing secret to `tokens.create()`
   * deps: uid-safe@~2.0.0
     - Use global `Promise` when returning a promise
 

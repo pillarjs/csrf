@@ -67,6 +67,10 @@ function Tokens(options) {
  */
 
 Tokens.prototype.create = function create(secret) {
+  if (!secret || typeof secret !== 'string') {
+    throw new TypeError('argument secret is required')
+  }
+
   return this._tokenize(secret, rndm(this.saltLength))
 }
 
