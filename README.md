@@ -117,7 +117,7 @@ if (!tokens.verify(secret, token)) {
 [npm-image]: https://img.shields.io/npm/v/csrf.svg
 [npm-url]: https://npmjs.org/package/csrf
 [node-image]: https://img.shields.io/node/v/csrf.svg
-[node-url]: http://nodejs.org/download/
+[node-url]: https://nodejs.org/en/download/
 [travis-image]: https://img.shields.io/travis/pillarjs/csrf/master.svg
 [travis-url]: https://travis-ci.org/pillarjs/csrf
 [coveralls-image]: https://img.shields.io/coveralls/pillarjs/csrf/master.svg
