@@ -10,7 +10,7 @@
   "repository": "pillarjs/csrf",
   "dependencies": {
     "base64-url": "1.2.1",
-    "rndm": "~1.1.0",
+    "rndm": "1.2.0",
     "scmp": "1.0.0",
     "uid-safe": "~2.0.0"
   },
