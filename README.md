@@ -38,7 +38,7 @@ optional and will just use all defaults if missing.
 
 #### Options
 
-Morgan accepts these properties in the options object.
+Tokens accepts these properties in the options object.
 
 ##### saltLength
 
