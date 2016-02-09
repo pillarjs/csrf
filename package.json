@@ -17,7 +17,7 @@
   "devDependencies": {
     "bluebird": "3.1.5",
     "istanbul": "0.4.2",
-    "mocha": "2.4.4"
+    "mocha": "2.4.5"
   },
   "files": [
     "LICENSE",
