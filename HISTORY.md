@@ -1,6 +1,7 @@
 unreleased
 ==========
 
+  * Use `tsscmp` module for timing-safe token verification
   * deps: base64-url@1.2.2
   * deps: uid-safe@2.1.1
     - deps: base64-url@1.2.2
