@@ -13,7 +13,7 @@
  */
 
 var rndm = require('rndm')
-var scmp = require('scmp')
+var tsscmp = require('tsscmp')
 var uid = require('uid-safe')
 var crypto = require('crypto')
 var escape = require('base64-url').escape
@@ -135,5 +135,5 @@ Tokens.prototype.verify = function verify (secret, token) {
   var salt = token.substr(0, index)
   var expected = this._tokenize(secret, salt)
 
-  return scmp(token, expected)
+  return tsscmp(token, expected)
 }
