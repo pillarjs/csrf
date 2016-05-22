@@ -12,7 +12,7 @@
     "base64-url": "1.2.2",
     "rndm": "1.2.0",
     "tsscmp": "1.0.2",
-    "uid-safe": "2.1.0"
+    "uid-safe": "2.1.1"
   },
   "devDependencies": {
     "bluebird": "3.4.0",
