@@ -1,5 +1,5 @@
-unreleased
-==========
+3.0.2 / 2016-05-22
+==================
 
   * Use `tsscmp` module for timing-safe token verification
   * deps: base64-url@1.2.2
