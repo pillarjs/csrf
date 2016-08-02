@@ -2,6 +2,8 @@ unreleased
 ==========
 
   * deps: base64-url@1.3.2
+  * deps: uid-safe@2.1.2
+    - deps: base64-url@1.3.2
 
 3.0.3 / 2016-05-26
 ==================
