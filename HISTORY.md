@@ -1,7 +1,7 @@
 unreleased
 ==========
 
-  * deps: base64-url@1.3.2
+  * deps: base64-url@1.3.3
   * deps: uid-safe@2.1.2
     - deps: base64-url@1.3.2
 
