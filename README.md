@@ -21,7 +21,7 @@ module?
 
 ### Install
 
-```bash
+```sh
 $ npm install csrf
 ```
 
