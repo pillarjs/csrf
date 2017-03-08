@@ -1,5 +1,5 @@
-unreleased
-==========
+3.0.5 / 2017-03-07
+==================
 
   * deps: uid-safe@2.1.4
     - Remove `base64-url` dependency
