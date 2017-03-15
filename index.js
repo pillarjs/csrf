@@ -16,7 +16,15 @@ var rndm = require('rndm')
 var uid = require('uid-safe')
 var compare = require('tsscmp')
 var crypto = require('crypto')
-var escape = require('base64-url').escape
+
+/**
+ * Module variables.
+ * @private
+ */
+
+var EQUAL_GLOBAL_REGEXP = /=/g
+var PLUS_GLOBAL_REGEXP = /\+/g
+var SLASH_GLOBAL_REGEXP = /\//g
 
 /**
  * Module exports.
@@ -102,11 +110,7 @@ Tokens.prototype.secretSync = function secretSync () {
  */
 
 Tokens.prototype._tokenize = function tokenize (secret, salt) {
-  var hash = crypto
-    .createHash('sha1')
-    .update(salt + '-' + secret, 'ascii')
-    .digest('base64')
-  return escape(salt + '-' + hash)
+  return salt + '-' + hash(salt + '-' + secret)
 }
 
 /**
@@ -136,4 +140,20 @@ Tokens.prototype.verify = function verify (secret, token) {
   var expected = this._tokenize(secret, salt)
 
   return compare(token, expected)
+}
+
+/**
+ * Hash a string with SHA1, returning url-safe base64
+ * @param {string} str
+ * @private
+ */
+
+function hash (str) {
+  return crypto
+    .createHash('sha1')
+    .update(str, 'ascii')
+    .digest('base64')
+    .replace(PLUS_GLOBAL_REGEXP, '-')
+    .replace(SLASH_GLOBAL_REGEXP, '_')
+    .replace(EQUAL_GLOBAL_REGEXP, '')
 }

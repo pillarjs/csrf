@@ -1,3 +1,8 @@
+unreleased
+==========
+
+  * Remove `base64-url` dependency
+
 3.0.5 / 2017-03-07
 ==================
 
