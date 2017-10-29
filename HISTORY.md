@@ -1,3 +1,9 @@
+unreleased
+==========
+
+  * deps: uid-safe@2.1.5
+    - perf: remove only trailing `=`
+
 3.0.6 / 2017-03-14
 ==================
 
