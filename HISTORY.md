@@ -1,6 +1,8 @@
 unreleased
 ==========
 
+  * deps: tsscmp@1.0.6
+    - Use `crypto.timingSafeEqual` when available
   * deps: uid-safe@2.1.5
     - perf: remove only trailing `=`
 

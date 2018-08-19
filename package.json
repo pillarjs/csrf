@@ -10,7 +10,7 @@
   "repository": "pillarjs/csrf",
   "dependencies": {
     "rndm": "1.2.0",
-    "tsscmp": "1.0.5",
+    "tsscmp": "1.0.6",
     "uid-safe": "2.1.5"
   },
   "devDependencies": {
