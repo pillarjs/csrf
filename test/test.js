@@ -45,8 +45,8 @@ describe('Tokens', function () {
       it('should generate secret with specified byte length', function () {
         // 3 bytes = 4 base-64 characters
         // 4 bytes = 6 base-64 characters
-        assert.equal(Tokens({secretLength: 3}).secretSync().length, 4)
-        assert.equal(Tokens({secretLength: 4}).secretSync().length, 6)
+        assert.strictEqual(Tokens({secretLength: 3}).secretSync().length, 4)
+        assert.strictEqual(Tokens({secretLength: 4}).secretSync().length, 6)
       })
     })
   })
@@ -85,7 +85,7 @@ describe('Tokens', function () {
       assert.ok(token.length > 0)
 
       for (var i = 0; i < 1000; i++) {
-        assert.equal(this.tokens.create(this.secret).length, token.length)
+        assert.strictEqual(this.tokens.create(this.secret).length, token.length)
       }
     })
 
