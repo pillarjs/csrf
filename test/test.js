@@ -5,48 +5,49 @@ var Promise = global.Promise || require('bluebird')
 var Tokens = require('..')
 
 // Add Promise to mocha's global list
+// eslint-disable-next-line no-self-assign
 global.Promise = global.Promise
 
 describe('Tokens', function () {
   describe('options', function () {
     describe('saltLength', function () {
       it('should reject non-numbers', function () {
-        assert.throws(Tokens.bind(null, {saltLength: 'bogus'}),
+        assert.throws(Tokens.bind(null, { saltLength: 'bogus' }),
           /option saltLength/)
       })
 
       it('should reject NaN', function () {
-        assert.throws(Tokens.bind(null, {saltLength: NaN}),
+        assert.throws(Tokens.bind(null, { saltLength: NaN }),
           /option saltLength/)
       })
 
       it('should reject Infinity', function () {
-        assert.throws(Tokens.bind(null, {saltLength: Infinity}),
+        assert.throws(Tokens.bind(null, { saltLength: Infinity }),
           /option saltLength/)
       })
     })
 
     describe('secretLength', function () {
       it('should reject non-numbers', function () {
-        assert.throws(Tokens.bind(null, {secretLength: 'bogus'}),
+        assert.throws(Tokens.bind(null, { secretLength: 'bogus' }),
           /option secretLength/)
       })
 
       it('should reject NaN', function () {
-        assert.throws(Tokens.bind(null, {secretLength: NaN}),
+        assert.throws(Tokens.bind(null, { secretLength: NaN }),
           /option secretLength/)
       })
 
       it('should reject Infinity', function () {
-        assert.throws(Tokens.bind(null, {secretLength: Infinity}),
+        assert.throws(Tokens.bind(null, { secretLength: Infinity }),
           /option secretLength/)
       })
 
       it('should generate secret with specified byte length', function () {
         // 3 bytes = 4 base-64 characters
         // 4 bytes = 6 base-64 characters
-        assert.strictEqual(Tokens({secretLength: 3}).secretSync().length, 4)
-        assert.strictEqual(Tokens({secretLength: 4}).secretSync().length, 6)
+        assert.strictEqual(Tokens({ secretLength: 3 }).secretSync().length, 4)
+        assert.strictEqual(Tokens({ secretLength: 4 }).secretSync().length, 6)
       })
     })
   })
@@ -100,11 +101,15 @@ describe('Tokens', function () {
 
     describe('when crypto.DEFAULT_ENCODING altered', function () {
       before(function () {
+        // eslint-disable-next-line node/no-deprecated-api
         this.defaultEncoding = crypto.DEFAULT_ENCODING
+
+        // eslint-disable-next-line node/no-deprecated-api
         crypto.DEFAULT_ENCODING = 'hex'
       })
 
       after(function () {
+        // eslint-disable-next-line node/no-deprecated-api
         crypto.DEFAULT_ENCODING = this.defaultEncoding
       })
 
