@@ -22,6 +22,10 @@ before_install:
   - |
     # Skip updating shrinkwrap / lock
     npm config set shrinkwrap false
+  # Remove all non-test dependencies
+  - |
+    # Remove benchmark dependencies
+    npm rm --save-dev beautify-benchmark benchmark
   # Setup Node.js version-specific dependencies
   - |
     # mocha for testing

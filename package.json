@@ -14,6 +14,8 @@
     "uid-safe": "2.1.5"
   },
   "devDependencies": {
+    "beautify-benchmark": "0.2.4",
+    "benchmark": "2.1.4",
     "bluebird": "3.5.2",
     "eslint": "5.8.0",
     "eslint-config-standard": "12.0.0",
@@ -36,6 +38,7 @@
     "node": ">= 0.8"
   },
   "scripts": {
+    "bench": "node benchmark/index.js",
     "lint": "eslint --plugin markdown --ext js,md .",
     "test": "mocha --trace-deprecation --reporter spec --bail --check-leaks test/",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --trace-deprecation --reporter dot --check-leaks test/",
