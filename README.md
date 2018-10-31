@@ -1,7 +1,7 @@
 # CSRF
 
-[![NPM Version][npm-image]][npm-url]
-[![NPM Downloads][downloads-image]][downloads-url]
+[![NPM Version][npm-version-image]][npm-url]
+[![NPM Downloads][npm-downloads-image]][npm-url]
 [![Node.js Version][node-image]][node-url]
 [![Build Status][travis-image]][travis-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
@@ -126,13 +126,12 @@ if (!tokens.verify(secret, token)) {
 
 [MIT](LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/csrf.svg
-[npm-url]: https://npmjs.org/package/csrf
-[node-image]: https://img.shields.io/node/v/csrf.svg
-[node-url]: https://nodejs.org/en/download/
-[travis-image]: https://img.shields.io/travis/pillarjs/csrf/master.svg
-[travis-url]: https://travis-ci.org/pillarjs/csrf
-[coveralls-image]: https://img.shields.io/coveralls/pillarjs/csrf/master.svg
+[coveralls-image]: https://badgen.net/coveralls/c/github/pillarjs/csrf/master
 [coveralls-url]: https://coveralls.io/r/pillarjs/csrf?branch=master
-[downloads-image]: https://img.shields.io/npm/dm/csrf.svg
-[downloads-url]: https://npmjs.org/package/csrf
+[node-image]: https://badgen.net/npm/node/csrf
+[node-url]: https://nodejs.org/en/download
+[npm-downloads-image]: https://badgen.net/npm/dm/csrf
+[npm-url]: https://npmjs.org/package/csrf
+[npm-version-image]: https://badgen.net/npm/v/csrf
+[travis-image]: https://badgen.net/travis/pillarjs/csrf/master
+[travis-url]: https://travis-ci.org/pillarjs/csrf
