@@ -14,7 +14,7 @@
     "uid-safe": "2.1.5"
   },
   "devDependencies": {
-    "bluebird": "3.5.1",
+    "bluebird": "3.5.2",
     "eslint": "5.8.0",
     "eslint-config-standard": "12.0.0",
     "eslint-plugin-import": "2.14.0",
