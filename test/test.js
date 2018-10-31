@@ -113,7 +113,7 @@ describe('Tokens', function () {
         crypto.DEFAULT_ENCODING = this.defaultEncoding
       })
 
-      it('should creaate a token', function () {
+      it('should create a token', function () {
         var token = this.tokens.create(this.secret)
         assert.ok(typeof token === 'string')
         assert.ok(token.length > 0)
