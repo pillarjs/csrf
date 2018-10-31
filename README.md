@@ -25,6 +25,12 @@ module?
 $ npm install csrf
 ```
 
+### TypeScript
+
+This module includes a [TypeScript](https://www.typescriptlang.org/)
+declaration file to enable auto complete in compatible editors and type
+information for TypeScript projects.
+
 ## API
 
 <!-- eslint-disable no-unused-vars -->
