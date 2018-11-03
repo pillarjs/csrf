@@ -126,6 +126,12 @@ describe('Tokens', function () {
       this.tokens = new Tokens()
     })
 
+    it('should reject bad callback', function () {
+      assert.throws(function () {
+        this.tokens.secret(42)
+      }.bind(this), /argument callback/)
+    })
+
     it('should create a secret', function (done) {
       this.tokens.secret(function (err, secret) {
         assert.ifError(err)
@@ -171,6 +177,12 @@ describe('Tokens', function () {
         assert.throws(function () {
           this.tokens.secret()
         }.bind(this), /argument callback.*required/)
+      })
+
+      it('should reject bad callback', function () {
+        assert.throws(function () {
+          this.tokens.secret(42)
+        }.bind(this), /argument callback/)
       })
     })
   })
