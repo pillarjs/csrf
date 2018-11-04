@@ -9,9 +9,9 @@
   "license": "MIT",
   "repository": "pillarjs/csrf",
   "dependencies": {
+    "nanoid": "2.0.0",
     "rndm": "1.2.0",
-    "tsscmp": "1.0.6",
-    "uid-safe": "2.1.5"
+    "tsscmp": "1.0.6"
   },
   "devDependencies": {
     "beautify-benchmark": "0.2.4",

@@ -13,9 +13,10 @@
  */
 
 var rndm = require('rndm')
-var uid = require('uid-safe')
 var compare = require('tsscmp')
 var crypto = require('crypto')
+var nanoid = require('nanoid')
+var nanoidAsync = require('nanoid/async')
 
 /**
  * Module variables.
@@ -92,7 +93,7 @@ Tokens.prototype.create = function create (secret) {
  */
 
 Tokens.prototype.secret = function secret (callback) {
-  return uid(this.secretLength, callback)
+  return nanoidAsync(Math.floor(this.secretLength * 8 / 5), callback)
 }
 
 /**
@@ -101,7 +102,7 @@ Tokens.prototype.secret = function secret (callback) {
  */
 
 Tokens.prototype.secretSync = function secretSync () {
-  return uid.sync(this.secretLength)
+  return nanoid(Math.floor(this.secretLength * 8 / 5))
 }
 
 /**
