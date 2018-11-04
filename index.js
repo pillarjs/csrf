@@ -93,6 +93,16 @@ Tokens.prototype.create = function create (secret) {
  */
 
 Tokens.prototype.secret = function secret (callback) {
+  // validate callback is a function, if provided
+  if (callback !== undefined && typeof callback !== 'function') {
+    throw new TypeError('argument callback must be a function')
+  }
+
+  // require the callback without promises
+  if (!callback && !global.Promise) {
+    throw new TypeError('argument callback is required')
+  }
+
   return nanoidAsync(Math.floor(this.secretLength * 8 / 5), callback)
 }
 

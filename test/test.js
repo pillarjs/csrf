@@ -129,7 +129,7 @@ describe('Tokens', function () {
     it('should reject bad callback', function () {
       assert.throws(function () {
         this.tokens.secret(42)
-      }.bind(this), /Callback is not a function/)
+      }.bind(this), /argument callback/)
     })
 
     it('should create a secret', function (done) {
@@ -176,13 +176,13 @@ describe('Tokens', function () {
       it('should require callback', function () {
         assert.throws(function () {
           this.tokens.secret()
-        }.bind(this), /Function callback.*required/)
+        }.bind(this), /argument callback.*required/)
       })
 
       it('should reject bad callback', function () {
         assert.throws(function () {
           this.tokens.secret(42)
-        }.bind(this), /Callback is not a function/)
+        }.bind(this), /argument callback/)
       })
     })
   })
