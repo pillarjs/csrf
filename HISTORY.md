@@ -1,5 +1,5 @@
-unreleased
-==========
+3.1.0 / 2019-04-09
+==================
 
   * Include a TypeScript definition file
   * deps: tsscmp@1.0.6
