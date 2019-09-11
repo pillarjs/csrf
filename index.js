@@ -53,21 +53,27 @@ function Tokens (options) {
     return new Tokens(options)
   }
 
-  var opts = Object.assign({}, DefaultOptions, options || {})
+  var opts = options || {}
 
-  var saltLength = opts.saltLength
+  var saltLength = opts.saltLength !== undefined
+    ? opts.saltLength
+    : DefaultOptions.saltLength
 
   if (typeof saltLength !== 'number' || !isFinite(saltLength) || saltLength < 1) {
     throw new TypeError('option saltLength must be finite number > 1')
   }
 
-  var secretLength = opts.secretLength
+  var secretLength = opts.secretLength !== undefined
+    ? opts.secretLength
+    : DefaultOptions.secretLength
 
   if (typeof secretLength !== 'number' || !isFinite(secretLength) || secretLength < 1) {
     throw new TypeError('option secretLength must be finite number > 1')
   }
 
-  var hashAlgorithm = opts.hashAlgorithm
+  var hashAlgorithm = opts.hashAlgorithm !== undefined
+    ? opts.hashAlgorithm
+    : DefaultOptions.hashAlgorithm
 
   if (typeof hashAlgorithm !== 'string' || !hashAlgorithm) {
     throw new TypeError('option hashAlgorithm must be valid hash algorithn')
