@@ -59,6 +59,10 @@ The length of the secret to generate, in bytes. Note that the secret is
 passed around base-64 encoded and that this length refers to the underlying
 bytes, not the length of the base-64 string. Defaults to `18` bytes.
 
+##### hashAlgorithm
+
+The algorithm to be used in generating hash digests. "*The algorithm is dependent on the available algorithms supported by the version of OpenSSL on the platform*" ([see Node crypto.createHash documentation](https://nodejs.org/api/crypto.html#crypto_crypto_createhash_algorithm_options))
+
 #### tokens.create(secret)
 
 Create a new CSRF token attached to the given `secret`. The `secret` is a

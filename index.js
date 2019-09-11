@@ -26,6 +26,12 @@ var EQUAL_GLOBAL_REGEXP = /=/g
 var PLUS_GLOBAL_REGEXP = /\+/g
 var SLASH_GLOBAL_REGEXP = /\//g
 
+var DefaultOptions = {
+  saltLength: 8,
+  secretLength: 18,
+  hashAlgorithm: 'sha1'
+}
+
 /**
  * Module exports.
  * @public
@@ -47,26 +53,29 @@ function Tokens (options) {
     return new Tokens(options)
   }
 
-  var opts = options || {}
+  var opts = Object.assign({}, DefaultOptions, options || {})
 
-  var saltLength = opts.saltLength !== undefined
-    ? opts.saltLength
-    : 8
+  var saltLength = opts.saltLength
 
   if (typeof saltLength !== 'number' || !isFinite(saltLength) || saltLength < 1) {
     throw new TypeError('option saltLength must be finite number > 1')
   }
 
-  var secretLength = opts.secretLength !== undefined
-    ? opts.secretLength
-    : 18
+  var secretLength = opts.secretLength
 
   if (typeof secretLength !== 'number' || !isFinite(secretLength) || secretLength < 1) {
     throw new TypeError('option secretLength must be finite number > 1')
   }
 
+  var hashAlgorithm = opts.hashAlgorithm
+
+  if (typeof hashAlgorithm !== 'string' || !hashAlgorithm) {
+    throw new TypeError('option hashAlgorithm must be valid hash algorithn')
+  }
+
   this.saltLength = saltLength
   this.secretLength = secretLength
+  this.hashAlgorithm = hashAlgorithm
 }
 
 /**
@@ -110,7 +119,7 @@ Tokens.prototype.secretSync = function secretSync () {
  */
 
 Tokens.prototype._tokenize = function tokenize (secret, salt) {
-  return salt + '-' + hash(salt + '-' + secret)
+  return salt + '-' + this.hash(salt + '-' + secret)
 }
 
 /**
@@ -148,9 +157,9 @@ Tokens.prototype.verify = function verify (secret, token) {
  * @private
  */
 
-function hash (str) {
+Tokens.prototype.hash = function hash (str) {
   return crypto
-    .createHash('sha1')
+    .createHash(this.hashAlgorithm)
     .update(str, 'ascii')
     .digest('base64')
     .replace(PLUS_GLOBAL_REGEXP, '-')
