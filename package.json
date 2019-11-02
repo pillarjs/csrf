@@ -16,7 +16,7 @@
   "devDependencies": {
     "beautify-benchmark": "0.2.4",
     "benchmark": "2.1.4",
-    "bluebird": "3.5.5",
+    "bluebird": "3.7.1",
     "eslint": "6.6.0",
     "eslint-config-standard": "14.1.0",
     "eslint-plugin-import": "2.18.2",
