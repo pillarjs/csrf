@@ -3,7 +3,7 @@
 [![NPM Version][npm-version-image]][npm-url]
 [![NPM Downloads][npm-downloads-image]][npm-url]
 [![Node.js Version][node-image]][node-url]
-[![Build Status][travis-image]][travis-url]
+[![Build Status][ci-image]][ci-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
 Logic behind CSRF token creation and verification.
@@ -132,6 +132,8 @@ if (!tokens.verify(secret, token)) {
 
 [MIT](LICENSE)
 
+[ci-image]: https://badgen.net/github/checks/pillarjs/csrf/master?label=ci
+[ci-url]: https://github.com/pillarjs/csrf/actions/workflows/ci.yml
 [coveralls-image]: https://badgen.net/coveralls/c/github/pillarjs/csrf/master
 [coveralls-url]: https://coveralls.io/r/pillarjs/csrf?branch=master
 [node-image]: https://badgen.net/npm/node/csrf
@@ -139,5 +141,3 @@ if (!tokens.verify(secret, token)) {
 [npm-downloads-image]: https://badgen.net/npm/dm/csrf
 [npm-url]: https://npmjs.org/package/csrf
 [npm-version-image]: https://badgen.net/npm/v/csrf
-[travis-image]: https://badgen.net/travis/pillarjs/csrf/master
-[travis-url]: https://travis-ci.org/pillarjs/csrf
