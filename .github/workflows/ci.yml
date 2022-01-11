@@ -99,7 +99,7 @@ jobs:
           npm-i: mocha@8.4.0
 
         - name: Node.js 12.x
-          node-version: "12.19"
+          node-version: "12.22"
 
         - name: Node.js 13.x
           node-version: "13.14"
