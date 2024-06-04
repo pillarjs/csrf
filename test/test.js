@@ -50,6 +50,18 @@ describe('Tokens', function () {
         assert.strictEqual(Tokens({ secretLength: 4 }).secretSync().length, 6)
       })
     })
+
+    describe('hashAlgorithm', function () {
+      it('should reject non-strings', function () {
+        assert.throws(Tokens.bind(null, { hashAlgorithm: 256 }),
+          /option hashAlgorithm/)
+      })
+
+      it('should reject empty strings', function () {
+        assert.throws(Tokens.bind(null, { hashAlgorithm: '' }),
+          /option hashAlgorithm/)
+      })
+    })
   })
 
   describe('.create(secret)', function () {
