@@ -13,9 +13,10 @@
  */
 
 var rndm = require('rndm')
-var uid = require('uid-safe')
 var compare = require('tsscmp')
 var crypto = require('crypto')
+var nanoid = require('nanoid')
+var nanoidAsync = require('nanoid/async')
 
 /**
  * Module variables.
@@ -92,7 +93,17 @@ Tokens.prototype.create = function create (secret) {
  */
 
 Tokens.prototype.secret = function secret (callback) {
-  return uid(this.secretLength, callback)
+  // validate callback is a function, if provided
+  if (callback !== undefined && typeof callback !== 'function') {
+    throw new TypeError('argument callback must be a function')
+  }
+
+  // require the callback without promises
+  if (!callback && !global.Promise) {
+    throw new TypeError('argument callback is required')
+  }
+
+  return nanoidAsync(Math.floor(this.secretLength * 8 / 5), callback)
 }
 
 /**
@@ -101,7 +112,7 @@ Tokens.prototype.secret = function secret (callback) {
  */
 
 Tokens.prototype.secretSync = function secretSync () {
-  return uid.sync(this.secretLength)
+  return nanoid(Math.floor(this.secretLength * 8 / 5))
 }
 
 /**
